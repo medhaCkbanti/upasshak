@@ -14,16 +14,16 @@ const NavigationItem = ({ item, activeDropdown, setActiveDropdown }) => {
   };
 
   return (
-    <li className="relative">
+    <li className="relative group">
       {item.path ? (
         <Link
           to={item.path}
-          className="hover:text-yellow-300 font-semibold transition-colors"
+          className="hover:text-yellow-300 font-semibold transition-colors px-3 py-2 block"
         >
           {item.label}
         </Link>
       ) : (
-        <div className="cursor-pointer" onClick={handleClick}>
+        <div className="cursor-pointer px-3 py-2" onClick={handleClick}>
           <div className="flex items-center hover:text-yellow-300 font-semibold transition-colors">
             {item.label}
             <ChevronDown
@@ -57,10 +57,10 @@ const NavigationItem = ({ item, activeDropdown, setActiveDropdown }) => {
               </motion.ul>
             )}
           </AnimatePresence>
-        </div>
+          </div>
       )}
     </li>
   );
 };
 
-export default NavigationItem;
+export default NavigationItem

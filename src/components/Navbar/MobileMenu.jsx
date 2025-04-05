@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import DonateButton from "./DonateButton";
 import { useState } from "react";
 
+// MobileMenu.jsx - Updated for better responsiveness
 const MobileMenu = ({ isOpen, navItems, closeMenu }) => {
   const [openDropdown, setOpenDropdown] = useState(null);
 
@@ -14,11 +15,12 @@ const MobileMenu = ({ isOpen, navItems, closeMenu }) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="md:hidden absolute top-24 left-0 w-full bg-[#EFFFF3] z-20 shadow-lg"
+          className="md:hidden fixed inset-0 top-24 bg-[#EFFFF3] z-20 shadow-lg overflow-y-auto"
         >
-          <ul className="flex flex-col space-y-4 p-4">
-            {navItems.map((item) => (
-              <li key={item.label}>
+          <div className="p-4 space-y-4">
+            <ul className="space-y-4">
+              {navItems.map((item) => (
+                <li key={item.label} className="border-b border-gray-200">
                 {item.path ? (
                   <Link
                     to={item.path}
@@ -38,55 +40,16 @@ const MobileMenu = ({ isOpen, navItems, closeMenu }) => {
                   />
                 )}
               </li>
-            ))}
-            <li>
+              ))}
+            </ul>
+            <div className="px-2">
               <DonateButton mobile onClick={closeMenu} />
-            </li>
-          </ul>
+            </div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 };
 
-const MobileDropdown = ({ item, isOpen, toggleOpen, closeMenu }) => (
-  <div className="space-y-2">
-    <button
-      className="flex items-center w-full justify-between p-2 font-semibold"
-      onClick={toggleOpen}
-    >
-      {item.label}
-      <ChevronDown className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
-    </button>
-    
-    <AnimatePresence>
-      {isOpen && (
-        <motion.ul
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          className="pl-4 space-y-2 overflow-hidden"
-        >
-          {item.dropdown.map((subItem) => (
-            <motion.li
-              key={subItem.label}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="hover:bg-[#b8e0b8] rounded-md"
-            >
-              <Link
-                to={subItem.path} // Use subItem.path instead of transforming label
-                className="block p-2"
-                onClick={closeMenu}
-              >
-                {subItem.label}
-              </Link>
-            </motion.li>
-          ))}
-        </motion.ul>
-      )}
-    </AnimatePresence>
-  </div>
-);
-
-export default MobileMenu;
+export default MobileMenu

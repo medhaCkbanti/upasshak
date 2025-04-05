@@ -21,6 +21,9 @@ import AllStudents from "../pages/List/AllStudents";
 import AllBlogs from "../pages/List/AllBlogs";
 import ProtectedRoute from "../components/ProtectedRoute";
 import Login from "../pages/Login";
+import VideosPage from "../pages/VideoPage";
+import AddVideo from "../pages/Add/AddVideo";
+import AllVideos from "../pages/List/AllVideos";
 
 
 const router = createBrowserRouter([
@@ -34,6 +37,7 @@ const router = createBrowserRouter([
       { path: "management-team", element: <ManagementTeam /> },
       { path: "students", element: <StudentTable /> },
       { path: "gallery/photos", element: <Photos /> },
+      { path: "gallery/videos", element: <VideosPage/> },
       { path: "contact-us", element: <Contact /> },
       { path: "details/:name", element: <Details /> },
       { path: "success", element: <SuccessContent /> },
@@ -51,9 +55,11 @@ const router = createBrowserRouter([
           { path: "addStudent", element: <AddStudent /> },
           { path: "updateStudent/:studentId", element: <AddStudent /> },
           { path: "addImages", element: <AddImages /> },
+          { path:"addVideo", element: <AddVideo/>} , 
           { path: "allBlogs", element: <AllBlogs/> },
           { path: "allImages", element: <AllImages /> },
-          { path: "allStudents", element: <AllStudents /> }
+          { path: "allStudents", element: <AllStudents /> },
+          { path: "allVideos", element: <AllVideos/> }
         ]
       }
     ]

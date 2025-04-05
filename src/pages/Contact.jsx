@@ -26,7 +26,7 @@ const Contact = () => {
     e.preventDefault();
 
     // Send email using mailto
-    const mailtoLink = `mailto:medhankarbanti1@gmail.com?subject=New Contact Form Message&body=Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
+    const mailtoLink = `mailto:ihumanitarian@yahoo.com?subject=New Contact Form Message&body=Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
 
     window.location.href = mailtoLink;
   };

@@ -1,3 +1,4 @@
+// StudentTable.jsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStudents } from '../../Features/studentSlice';
@@ -12,7 +13,7 @@ const classOrder = {
   '8': 3,
   '9': 4,
   '10': 5,
-  'SSC candidate': 6
+  'SSC': 6
 };
 
 const StudentTable = () => {
@@ -23,6 +24,7 @@ const StudentTable = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [selectedClass, setSelectedClass] = useState('all');
+  const [selectedGender, setSelectedGender] = useState('all');
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -46,18 +48,24 @@ const StudentTable = () => {
   }, [students]);
 
   const sortedStudents = students
-    .filter(student => selectedClass === 'all' || student.class === selectedClass)
+    .filter(student => 
+      (selectedClass === 'all' || student.class === selectedClass) &&
+      (selectedGender === 'all' || student.gender === selectedGender)
+    )
     .sort((a, b) => {
-      const orderA = classOrder[a.class] || 7;
-      const orderB = classOrder[b.class] || 7;
+      const classA = a.class.toString();
+      const classB = b.class.toString();
+      const orderA = classOrder[classA] || 7;
+      const orderB = classOrder[classB] || 7;
+      
       if (orderA !== orderB) return orderA - orderB;
-      if (a.gender === 'male' && b.gender !== 'male') return -1;
-      if (b.gender === 'male' && a.gender !== 'male') return 1;
+      if (a.gender === 'Male' && b.gender !== 'Male') return -1;
+      if (b.gender === 'Male' && a.gender !== 'Male') return 1;
       return 0;
     });
 
   return (
-    <div className="container mx-auto px-5 mt-5">
+    <div className="container mx-auto px-2 md:px-4 lg:px-6 mt-4">
       <ImageModal 
         isOpen={isImageModalOpen}
         imageUrl={selectedImage}
@@ -73,40 +81,60 @@ const StudentTable = () => {
         onClose={() => setIsDetailsModalOpen(false)}
       />
 
-      <div className="mb-4 flex flex-col md:flex-row md:items-center">
-        <label htmlFor="classFilter" className="mr-2 mb-2 md:mb-0 text-gray-700">
-          Filter by class:
-        </label>
-        <select 
-          id="classFilter"
-          value={selectedClass}
-          onChange={(e) => setSelectedClass(e.target.value)}
-          className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all w-full md:w-auto"
-        >
-          <option value="all">All Classes</option>
-          <option value="6">Class 6</option>
-          <option value="7">Class 7</option>
-          <option value="8">Class 8</option>
-          <option value="9">Class 9</option>
-          <option value="10">Class 10</option>
-          <option value="SSC candidate">SSC Candidate</option>
-        </select>
+      <div className="mb-4 flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-4">
+        {/* Class Filter */}
+        <div className="flex-1 md:flex-none">
+          <label htmlFor="classFilter" className="text-sm font-medium text-gray-700">
+            Filter by class:
+          </label>
+          <select 
+            id="classFilter"
+            value={selectedClass}
+            onChange={(e) => setSelectedClass(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Classes</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="SSC">SSC Candidates</option>
+          </select>
+        </div>
+
+        {/* Gender Filter */}
+        <div className="flex-1 md:flex-none">
+          <label htmlFor="genderFilter" className="text-sm font-medium text-gray-700">
+            Filter by gender:
+          </label>
+          <select 
+            id="genderFilter"
+            value={selectedGender}
+            onChange={(e) => setSelectedGender(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Genders</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
       </div>
 
-      <Table
-        students={sortedStudents}
-        onImageClick={(imageUrl) => {
-          setSelectedImage(imageUrl);
-          setIsImageModalOpen(true);
-        }}
-        onRowDoubleClick={(student) => {
-          setSelectedStudent(student);
-          setIsDetailsModalOpen(true);
-        }}
-        className={`transition-opacity duration-500 ease-in-out ${
-          dataLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
+      <div className={`transition-opacity duration-500 ease-in-out ${dataLoaded ? 'opacity-100' : 'opacity-0'}`}>
+        <Table
+          students={sortedStudents}
+          onImageClick={(imageUrl) => {
+            setSelectedImage(imageUrl);
+            setIsImageModalOpen(true);
+          }}
+          onRowDoubleClick={(student) => {
+            setSelectedStudent(student);
+            setIsDetailsModalOpen(true);
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -21,12 +21,12 @@ const TopBar = () => (
         ))}
       </div>
 
-      <div className="hidden sm:flex space-x-6 text-sm">
-        <ContactLink icon={Mail} text="info@upasshak.com" href="mailto:info@upasshak.com" />
-        <ContactLink icon={Phone} text="+123 456 7890" href="tel:+1234567890" />
-      </div>
-    </div>
-  </motion.div>
+<div className="hidden sm:flex space-x-4 md:space-x-6 text-sm items-center">
+  <ContactLink icon={Mail} text="ihumanitarian@yahoo.com" href="mailto:ihumanitarian@yahoo.com" />
+  <ContactLink icon={Phone} text="+88 02-333302299" href="tel:+88 02-333302299" />
+</div>
+</div>
+</motion.div>
 );
 
 const ContactLink = ({ icon: Icon, text, href }) => (

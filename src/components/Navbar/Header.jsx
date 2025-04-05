@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import DonateButton from "./DonateButton";
 import TopBar from "./TopBar";
 import NavigationItem from "./NavigationItem";
+import MobileMenu from "./MobileMenu";
+import { Menu, X } from "lucide-react";
 
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -33,13 +36,18 @@ const Header = () => {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (!e.target.closest('.desktop-nav')) {
+      if (!e.target.closest('.desktop-nav') && !e.target.closest('.mobile-menu')) {
         setActiveDropdown(null);
       }
     };
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    setActiveDropdown(null);
+  };
 
   return (
     <header>
@@ -55,6 +63,7 @@ const Header = () => {
             Upasshak
           </Link>
 
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 desktop-nav">
             <ul className="flex space-x-6 text-lg font-medium">
               {navItems.map((item) => (
@@ -68,7 +77,27 @@ const Header = () => {
             </ul>
             <DonateButton />
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        <MobileMenu
+          isOpen={isMenuOpen}
+          navItems={navItems}
+          closeMenu={() => setIsMenuOpen(false)}
+        />
       </motion.nav>
     </header>
   );

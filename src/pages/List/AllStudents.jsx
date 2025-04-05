@@ -40,7 +40,7 @@ const AllStudents = () => {
 
   const closeImageModal = () => {
     setIsModalOpen(false);
-    setTimeout(() => setSelectedImage(null), 300); // Wait for animation to complete
+    setTimeout(() => setSelectedImage(null), 300);
   };
 
   const renderGenderIcon = (gender) => {
@@ -52,8 +52,8 @@ const AllStudents = () => {
   };
 
   return (
-    <div className="container mx-auto pl-5 pr-80 mt-5">
-      {/* Full-screen Image Modal with Transitions */}
+    <div className="container mx-auto px-2 md:px-4 lg:px-6 mt-4">
+      {/* Image Modal */}
       <div 
         className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300 ease-in-out ${
           isModalOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
@@ -99,26 +99,95 @@ const AllStudents = () => {
       {/* Rest of your component remains the same */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-800">Student Records</h2>
+        <div className="px-4 md:px-6 py-4 border-b border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-800">Student Records</h2>
           <button
             onClick={() => navigate('/admin/addStudent')}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full md:w-auto justify-center"
           >
-            <FaPlus /> Add Student
+            <FaPlus className="text-sm md:text-base" /> 
+            <span className="text-sm md:text-base">Add Student</span>
           </button>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
+        {/* Mobile View */}
+        <div className="md:hidden">
+          {students.length > 0 ? (
+            students.map((student) => (
+              <div key={student._id} className="border-b border-gray-200 p-4 hover:bg-gray-50">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-start gap-4 flex-1">
+                    <div className="flex-shrink-0 h-12 w-12">
+                      {student.image ? (
+                        <img 
+                          className="h-12 w-12 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity" 
+                          src={student.image} 
+                          alt={student.name}
+                          onClick={() => handleImageClick(student.image)}
+                        />
+                      ) : (
+                        <div className="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center">
+                          <FaUser className="text-gray-500 text-lg" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">{student.name}</div>
+                      <div className="text-sm text-gray-500">Class {student.class}</div>
+                      <div className="text-sm text-gray-500">Age {student.age}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => handleEdit(student)}  
+                      className="text-blue-600 hover:text-blue-900"
+                    >
+                      <FaEdit className="text-lg" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(student._id, student.name)}
+                      className="text-red-600 hover:text-red-900"
+                    >
+                      <FaTrash className="text-lg" />
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="mt-4 pl-16 space-y-2">
+                  <div className="text-sm">
+                    <span className="font-medium">Father:</span> {student.fatherName}
+                  </div>
+                  <div className="text-sm">
+                    <span className="font-medium">Mother:</span> {student.motherName}
+                  </div>
+                  <div className="text-sm">
+                    <span className="font-medium">School:</span> {student.schoolName}
+                  </div>
+                  <div className="text-sm flex items-center gap-2">
+                    <span className="font-medium">Gender:</span>
+                    {renderGenderIcon(student.gender)}
+                    <span>{student.gender}</span>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="p-4 text-center text-sm text-gray-500">
+              {status === 'loading' ? 'Loading students...' : 'No students found'}
+            </div>
+          )}
+        </div>
+
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student Info</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Parents</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">School</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Student Info</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Parents</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">School</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Gender</th>
+                <th className="px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -126,12 +195,12 @@ const AllStudents = () => {
                 students.map((student) => (
                   <tr key={student._id} className="hover:bg-gray-50">
                     {/* Student Info */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 md:px-6 py-4">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
                           {student.image ? (
                             <img 
-                              className="h-10 w-10 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200" 
+                              className="h-10 w-10 rounded-full object-cover cursor-pointer hover:opacity-80 transition-opacity" 
                               src={student.image} 
                               alt={student.name}
                               onClick={() => handleImageClick(student.image)}
@@ -144,28 +213,22 @@ const AllStudents = () => {
                         </div>
                         <div className="ml-4">
                           <div className="text-sm font-medium text-gray-900">{student.name}</div>
-                          <div className="text-sm text-gray-500">Age: {student.age} | Class: {student.class}</div>
+                          <div className="text-sm text-gray-500">Age {student.age} | Class {student.class}</div>
                         </div>
                       </div>
                     </td>
                     
                     {/* Parents Info */}
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900">
-                        <div className="flex items-center gap-1">
-                          <span className="font-medium">Father:</span> 
-                          {student.fatherName}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <span className="font-medium">Mother:</span> 
-                          {student.motherName}
-                        </div>
+                    <td className="px-4 md:px-6 py-4">
+                      <div className="text-sm text-gray-900 space-y-1">
+                        <div className="line-clamp-1">{student.fatherName}</div>
+                        <div className="line-clamp-1">{student.motherName}</div>
                       </div>
                     </td>
                     
                     {/* School Info */}
-                    <td className="px-6 py-4">
-                      <div className="text-sm text-gray-500">
+                    <td className="px-4 md:px-6 py-4">
+                      <div className="text-sm text-gray-500 line-clamp-2">
                         {student.schoolName}
                         <div className="text-xs mt-1 text-gray-400">
                           {student.address}
@@ -174,7 +237,7 @@ const AllStudents = () => {
                     </td>
                     
                     {/* Gender */}
-                    <td className="px-6 py-4">
+                    <td className="px-4 md:px-6 py-4">
                       <div className="flex items-center gap-2">
                         {renderGenderIcon(student.gender)}
                         <span className="text-sm text-gray-700">{student.gender}</span>
@@ -182,21 +245,19 @@ const AllStudents = () => {
                     </td>
                     
                     {/* Actions */}
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <td className="px-4 md:px-6 py-4 whitespace-nowrap">
                       <div className="flex space-x-3">
                         <button
                           onClick={() => handleEdit(student)}  
-                          className="text-blue-600 hover:text-blue-900 transition-colors duration-200"
-                          title="Edit"
+                          className="text-blue-600 hover:text-blue-900"
                         >
-                          <FaEdit />
+                          <FaEdit className="text-lg" />
                         </button>
                         <button
                           onClick={() => handleDelete(student._id, student.name)}
-                          className="text-red-600 hover:text-red-900 transition-colors duration-200"
-                          title="Delete"
+                          className="text-red-600 hover:text-red-900"
                         >
-                          <FaTrash />
+                          <FaTrash className="text-lg" />
                         </button>
                       </div>
                     </td>

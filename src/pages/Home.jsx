@@ -5,7 +5,6 @@ import OurWork from '../components/OurWork';
 import Vision from '../components/Vision';
 import Galary from '../components/Galary';
 import Commitment from '../components/Commitment';
-import Success from '../components/Success';
 import Teacher from '../components/Teacher';
 
 const Home = () => {
@@ -17,7 +16,6 @@ const Home = () => {
             <Vision/>
             <Galary/>
             <Commitment/>
-            <Success/>
             <Teacher/>
         </div>
     );

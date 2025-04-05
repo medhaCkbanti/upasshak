@@ -52,7 +52,7 @@ const Sidebar = () => {
 
         {/* Add Videos */}
         <NavLink
-          to="/admin/addVideos"
+          to="/admin/addVideo"
           className={({ isActive }) =>
             `flex gap-3 items-center border border-r-0 border-gray-400 py-2 px-3 rounded-l-md cursor-pointer hover:bg-gray-100 ${
               isActive ? "bg-gray-200" : ""

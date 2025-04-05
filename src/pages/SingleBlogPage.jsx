@@ -4,10 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPost } from '../Features/blogSlice';
 import { IoHome } from 'react-icons/io5';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-// Animation Variants
 const pageVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeInOut" } },
@@ -25,24 +24,20 @@ const SingleBlogPage = () => {
     dispatch(getPost(name));
   }, [name, dispatch]);
 
-  if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p className="text-center text-red-500 text-lg sm:text-xl">{error}</p>;
-  if (!blog) return <p className="text-center text-red-500 text-lg sm:text-xl">Blog not found!</p>;
-
-  // Function to generate social sharing URLs with blog content
   const shareOnFacebook = () => {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(blog.title)}`;
-    window.open(url, "_blank");
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   const shareOnTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(blog.title)}&hashtags=blog`;
-    window.open(url, "_blank");
+    const text = `${encodeURIComponent(blog.title)}&url=${encodeURIComponent(window.location.href)}`;
+    const url = `https://twitter.com/intent/tweet?text=${text}`;
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   const shareOnLinkedIn = () => {
-    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(blog.title)}&summary=${encodeURIComponent(blog.content.substring(0, 200))}&source=${encodeURIComponent(window.location.origin)}`;
-    window.open(url, "_blank");
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`;
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   const copyToClipboard = () => {
@@ -53,6 +48,10 @@ const SingleBlogPage = () => {
     });
   };
 
+  if (status === 'loading') return <p>Loading...</p>;
+  if (status === 'failed') return <p className="text-center text-red-500 text-lg sm:text-xl">{error}</p>;
+  if (!blog) return <p className="text-center text-red-500 text-lg sm:text-xl">Blog not found!</p>;
+
   return (
     <motion.div
       className="container mx-auto px-3 sm:px-6 lg:px-40 py-4 sm:py-6"
@@ -61,7 +60,6 @@ const SingleBlogPage = () => {
       animate="visible"
       exit="exit"
     >
-      {/* Header */}
       <header className="mb-4 text-center sm:text-left">
         <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-gray-800">
           {blog.title}
@@ -71,7 +69,6 @@ const SingleBlogPage = () => {
         </p>
       </header>
 
-      {/* Breadcrumb */}
       <ul className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-5 text-sm sm:text-base">
         <Link to="/">
           <li className="flex items-center gap-2 font-semibold cursor-pointer">
@@ -86,7 +83,6 @@ const SingleBlogPage = () => {
         <li className="font-semibold text-[#76c04e] cursor-pointer">{blog.slug}</li>
       </ul>
 
-      {/* Blog Content */}
       <div className="flex justify-center">
         <div className="w-full max-w-5xl px-2 sm:px-4">
           {blog.image && (
@@ -96,8 +92,8 @@ const SingleBlogPage = () => {
                 alt={blog.title}
                 className="w-full h-auto max-h-[200px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px] rounded-lg shadow-md object-cover"
                 onError={(e) => {
-                  e.target.onerror = null; // Prevent infinite loop
-                  e.target.src = '/placeholder-image.jpg'; // Fallback image
+                  e.target.onerror = null;
+                  e.target.src = '/placeholder-image.jpg';
                 }}
               />
             </div>
@@ -109,58 +105,41 @@ const SingleBlogPage = () => {
         </div>
       </div>
 
-      {/* Social Media Icons */}
       <motion.div className="flex justify-center space-x-4 sm:space-x-6 mt-6 sm:mt-8">
-        {/* Facebook Share */}
         <motion.button
           onClick={shareOnFacebook}
           className="text-gray-600 hover:text-blue-600 transition-colors duration-300"
           whileHover={{ scale: 1.3 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          aria-label="Share on Facebook"
         >
-          <motion.div className="text-2xl sm:text-3xl"><FaFacebook /></motion.div>
+          <FaFacebook className="text-2xl sm:text-3xl" />
         </motion.button>
 
-        {/* Twitter Share */}
         <motion.button
           onClick={shareOnTwitter}
           className="text-gray-600 hover:text-blue-400 transition-colors duration-300"
           whileHover={{ scale: 1.3 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          aria-label="Share on Twitter"
         >
-          <motion.div className="text-2xl sm:text-3xl"><FaTwitter /></motion.div>
+          <FaTwitter className="text-2xl sm:text-3xl" />
         </motion.button>
 
-        {/* Instagram */}
-        <motion.a
-          href="https://instagram.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-600 hover:text-pink-600 transition-colors duration-300"
-          whileHover={{ scale: 1.3 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-        >
-          <motion.div className="text-2xl sm:text-3xl"><FaInstagram /></motion.div>
-        </motion.a>
-
-        {/* LinkedIn Share */}
         <motion.button
           onClick={shareOnLinkedIn}
           className="text-gray-600 hover:text-blue-700 transition-colors duration-300"
           whileHover={{ scale: 1.3 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          aria-label="Share on LinkedIn"
         >
-          <motion.div className="text-2xl sm:text-3xl"><FaLinkedin /></motion.div>
+          <FaLinkedin className="text-2xl sm:text-3xl" />
         </motion.button>
 
-        {/* Copy Link Button */}
         <motion.button
           onClick={copyToClipboard}
           className="text-gray-600 hover:text-gray-800 transition-colors duration-300"
           whileHover={{ scale: 1.3 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          aria-label="Copy link to clipboard"
         >
-          <motion.div className="text-2xl sm:text-3xl">🔗</motion.div>
+          <span className="text-2xl sm:text-3xl">🔗</span>
         </motion.button>
       </motion.div>
     </motion.div>
