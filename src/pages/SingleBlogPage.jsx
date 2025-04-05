@@ -94,7 +94,7 @@ const SingleBlogPage = () => {
               <img
                 src={blog.image} 
                 alt={blog.title}
-                className="w-full h-auto max-h-[200px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px] rounded-lg shadow-md object-cover object-top"
+                className="w-full h-auto max-h-[200px] sm:max-h-[300px] md:max-h-[400px] lg:max-h-[500px] rounded-lg shadow-md object-cover"
                 onError={(e) => {
                   e.target.onerror = null; // Prevent infinite loop
                   e.target.src = '/placeholder-image.jpg'; // Fallback image
