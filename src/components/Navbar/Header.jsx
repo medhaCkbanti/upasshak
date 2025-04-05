@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import DonateButton from "./DonateButton";
+import LogoutButton from "./LogoutButton";
 import TopBar from "./TopBar";
 import NavigationItem from "./NavigationItem";
 import MobileMenu from "./MobileMenu";
@@ -10,6 +11,7 @@ import { Menu, X } from "lucide-react";
 const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navItems = [
     { path: "/", label: "Home" },
@@ -33,8 +35,10 @@ const Header = () => {
     { path: "/contact-us", label: "Contact Us" },
   ];
 
-  // Close dropdown when clicking outside
   useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    setIsLoggedIn(!!token);
+    
     const handleClickOutside = (e) => {
       if (!e.target.closest('.desktop-nav') && !e.target.closest('.mobile-menu')) {
         setActiveDropdown(null);
@@ -47,6 +51,12 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     setActiveDropdown(null);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setIsLoggedIn(false);
+    window.location.href = '/';
   };
 
   return (
@@ -75,7 +85,11 @@ const Header = () => {
                 />
               ))}
             </ul>
-            <DonateButton />
+            {isLoggedIn ? (
+              <LogoutButton onClick={handleLogout} />
+            ) : (
+              <DonateButton />
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -84,11 +98,7 @@ const Header = () => {
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
             aria-label="Toggle navigation menu"
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
@@ -97,6 +107,8 @@ const Header = () => {
           isOpen={isMenuOpen}
           navItems={navItems}
           closeMenu={() => setIsMenuOpen(false)}
+          isLoggedIn={isLoggedIn}
+          handleLogout={handleLogout}
         />
       </motion.nav>
     </header>

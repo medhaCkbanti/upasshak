@@ -46,6 +46,7 @@ const Login = () => {
       // Redirect to previous location or admin dashboard
       const origin = location.state?.from?.pathname || '/admin';
       navigate(origin, { replace: true });
+      window.location.reload();
 
     } catch (err) {
       setError(err.message);

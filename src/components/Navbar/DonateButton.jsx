@@ -7,10 +7,10 @@ const DonateButton = ({ mobile, onClick }) => (
     <Link to="/donation" onClick={onClick}>
       <div className={`${
         mobile ? "w-full h-12 px-4" : "w-[150px] h-14"
-      } flex items-center justify-center border-2 border-[#ff9f0d] bg-[#ff9f0d] rounded-lg hover:bg-white transition-all`}>
+      } flex items-center justify-center border-2 border-[#ff9f0d] bg-[#ff9f0d] rounded-lg transition-all`}>
         
         <div className="flex items-center gap-2">
-          <span className="text-white font-semibold group-hover:text-[#ff9f0d]">
+          <span className="text-white font-semibold">
             Donate Now
           </span>
           <div className={`bg-white ${

@@ -1,8 +1,8 @@
-// StudentTable.jsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setStudents } from '../../Features/studentSlice';
 import axios from 'axios';
+import { motion, AnimatePresence } from 'framer-motion';
 import ImageModal from './ImageModal';
 import Table from './Table';
 import StudentDetailsModal from './StudentDetailsModal';
@@ -65,7 +65,12 @@ const StudentTable = () => {
     });
 
   return (
-    <div className="container mx-auto px-2 md:px-4 lg:px-6 mt-4">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="container mx-auto px-2 md:px-4 lg:px-6 mt-4"
+    >
       <ImageModal 
         isOpen={isImageModalOpen}
         imageUrl={selectedImage}
@@ -81,9 +86,18 @@ const StudentTable = () => {
         onClose={() => setIsDetailsModalOpen(false)}
       />
 
-      <div className="mb-4 flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="mb-4 flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-4"
+      >
         {/* Class Filter */}
-        <div className="flex-1 md:flex-none">
+        <motion.div
+          initial={{ x: -20 }}
+          animate={{ x: 0 }}
+          className="flex-1 md:flex-none"
+        >
           <label htmlFor="classFilter" className="text-sm font-medium text-gray-700">
             Filter by class:
           </label>
@@ -101,10 +115,14 @@ const StudentTable = () => {
             <option value="10">Class 10</option>
             <option value="SSC">SSC Candidates</option>
           </select>
-        </div>
+        </motion.div>
 
         {/* Gender Filter */}
-        <div className="flex-1 md:flex-none">
+        <motion.div
+          initial={{ x: 20 }}
+          animate={{ x: 0 }}
+          className="flex-1 md:flex-none"
+        >
           <label htmlFor="genderFilter" className="text-sm font-medium text-gray-700">
             Filter by gender:
           </label>
@@ -119,8 +137,8 @@ const StudentTable = () => {
             <option value="Female">Female</option>
             <option value="Other">Other</option>
           </select>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className={`transition-opacity duration-500 ease-in-out ${dataLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Table
@@ -135,7 +153,7 @@ const StudentTable = () => {
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
