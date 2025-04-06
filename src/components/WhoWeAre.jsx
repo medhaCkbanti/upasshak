@@ -28,14 +28,12 @@ const WhoWeAre = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="text-lg text-gray-700 sm:text-xl pb-5"
         >
-          Deepalaya started in 1979 with 7 founding members with the objective of
-          educating not-so-privileged children. Over the years, our focus has
-          expanded from providing education only to children to helping
-          underprivileged women, youth, and children become self-reliant through
-          education and vocational training. Deepalaya is the largest operational
-          NGO that has established projects across Delhi, Haryana, Uttar Pradesh,
-          Uttarakhand, Punjab, Kerala, Andhra Pradesh, Maharashtra, and
-          Telangana.
+      Upasshak Hostel, founded in 2009 in Bandarban, Bangladesh, is a sanctuary for hill tribe children from the Chakma, 
+      Marma, Mro, and Tripura communities. Partnering with CO-OPERAID Switzerland, we provide free residential education 
+      to 75 students annually, blending rigorous academics with cultural preservation. Our holistic model includes 
+      SSC exam coaching, digital literacy programs, and life skills training, while traditional dance, music, and festivals 
+      like Sangrai keep indigenous heritage alive.
+    
         </motion.p>
 
         <motion.p
@@ -45,15 +43,11 @@ const WhoWeAre = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="text-lg text-gray-700 sm:text-xl"
         >
-          We have been working for four decades and contributing to the crusade
-          against illiteracy. Every child deserves a chance is what Deepalaya
-          strongly believes in and has been working towards it. Over the years,
-          Deepalaya has established several projects in the areas of Education
-          (Formal/Non-Formal/Remedial), Women Empowerment (Reproductive Health,
-          Self Help Groups, Livelihood, Microfinance), Institutional Care,
-          Community Health, ECCD, Vocational Training, Environmental
-          Sustainability, and Differently Abled. These projects are operational
-          across India.
+          Girls, once sidelined, now comprise half our student body, empowered through scholarships and mentorship. 
+           Beyond classrooms, sustainable income-generating activities—dragon fruit orchards, cow farming—fund operations 
+           and teach agribusiness skills. Each child’s journey here defies poverty, geography, and societal norms, 
+           transforming dormitories into launchpads for doctors, artists, and leaders.
+
         </motion.p>
 
         {/* Read More Button */}

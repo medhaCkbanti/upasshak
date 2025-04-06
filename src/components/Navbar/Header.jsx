@@ -28,7 +28,7 @@ const Header = () => {
       label: "Gallery",
       dropdown: [
         { label: "Photos", path: "/gallery/photos" },
-        { label: "Videos", path: "/gallery/videos" },
+        { label: "Videos", path: "" },
       ],
     },
     { path: "/blogs", label: "Blogs" },

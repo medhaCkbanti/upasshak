@@ -14,18 +14,14 @@ const MissionVission = () => {
           {/* Vision Content */}
           <div className="w-full lg:w-[58%]">
             <p className="mb-4 text-lg text-gray-600 sm:text-xl">
-              A society based on legitimate rights, equity, justice, honesty,
-              social sensitivity, and a culture of service in which all are
-              self-reliant.
+            We envision a Bandarban where every hill tribe child thrives as a torchbearer—Marma 
+            doctors healing villages, Mro artists globalizing heritage, Chakma coders scripting equity.
             </p>
 
             <p className="mb-4 text-lg text-gray-600 sm:text-xl">
-              Deepalaya’s focus and sole reason for existence is the child,
-              especially the girl child, street child, and disabled child. The
-              family of the child is the medium through which the development
-              takes place. Organisation and sensitisation of the community is
-              the approach through which empowerment, capacity building, and
-              social transformation are attempted.
+            Solar-powered campuses replace rented walls; alumni networks fund scholarships; dragon fruit profits fuel dreams. 
+            Here, tradition dances with progress, classrooms echo with folktales and algorithms, and generations rise, 
+            unbroken, from these hills to light Bangladesh’s tomorrow.
             </p>
           </div>
         </div>
@@ -40,18 +36,13 @@ const MissionVission = () => {
           {/* Mission Content */}
           <div className="w-full lg:w-[58%]">
             <p className="mb-4 font-tajwal text-lg text-gray-600 sm:text-xl">
-              A society based on legitimate rights, equity, justice, honesty,
-              social sensitivity, and a culture of service in which all are
-              self-reliant.
+            Upasshak Hostel empowers Bandarban’s hill tribe youth through transformative education, merging rigorous academics with cultural pride.
             </p>
 
             <p className="mb-4 font-tajwal text-lg text-gray-600 sm:text-xl">
-              Deepalaya’s focus and sole reason for existence is the child,
-              especially the girl child, street child, and disabled child. The
-              family of the child is the medium through which the development
-              takes place. Organisation and sensitisation of the community is
-              the approach through which empowerment, capacity building, and
-              social transformation are attempted.
+            We nurture scholars in safe residential hubs, where SSC success meets indigenous dance, coding labs coexist with dragon fruit farms, 
+            and girls lead revolutions. By bridging ancestral wisdom and innovation, we cultivate leaders who honor their roots while 
+            reshaping futures—proving poverty bows to courage, books, and blooming orchards.
             </p>
           </div>
         </div>

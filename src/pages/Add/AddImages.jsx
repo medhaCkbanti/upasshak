@@ -94,9 +94,12 @@ const AddImages = () => {
             <option value="">Select a category</option>
             <option value="Dragon">Dragon</option>
             <option value="Students Activities">Students Activities</option>
+            <option value="Social Activities">Social Activities</option>
             <option value="Cultural Activities">Cultural Activites </option>
             <option value="Parents meeting"> Parents meeting </option>
+            <option value="Parents meeting"> Computer </option>
             <option value="Programs"> Programs </option>
+            <option value="Programs"> Work </option>
             <option value="Boys">Boys</option>
             <option value="Girls">Girls</option>
           </select>

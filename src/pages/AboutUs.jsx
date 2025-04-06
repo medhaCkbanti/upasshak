@@ -39,10 +39,14 @@ const AboutUs = () => {
 
             {/* Fading Text Paragraphs */}
             {[
-              "Deepalaya started in 1979 with 7 founding members with the objective of educating not-so-privileged children. Over the years, our focus has expanded from providing education only to children to helping underprivileged women, youth, and children become self-reliant through education and vocational training.",
-              "Deepalaya is the largest operational NGO that has established projects across Delhi, Haryana, Uttar Pradesh, Uttarakhand, Punjab, Kerala, Andhra Pradesh, Maharashtra, and Telangana.",
-              "We have been working for four decades and contributing to the crusade against illiteracy. Every child deserves a chance is what Deepalaya strongly believes in and has been working towards it.",
-              "Over the years, Deepalaya has established several projects in the areas of Education (Formal/Non-Formal/Remedial), Women Empowerment (Reproductive Health, Self Help Groups, Livelihood, Microfinance), Institutional Care, Community Health, ECCD, Vocational Training, Environmental Sustainability, and Differently Abled. These projects are operational across India.",
+               ` Upasshak Hostel, nestled in the heart of Bandarban Hill District, Bangladesh, stands as a transformative sanctuary for hill tribe 
+                children whose dreams of education were once hindered by poverty, geography, and cultural marginalization. Founded in January 2009 
+                by Humanitarian Foundation (HF) in partnership with CO-OPERAID Switzerland, Upasshak—meaning "guardian" in the Chakma language—embodies 
+                its name by safeguarding the futures of indigenous children from the Chakma, Marma, Mro, Tripura, and other ethnic communities. 
+                Over the past 15 years, this initiative has grown from a modest dormitory into a holistic educational ecosystem, blending academic rigor, 
+                cultural preservation, and sustainable development to break the cycle of intergenerational poverty.`
+     
+          
             ].map((text, index) => (
               <motion.p
                 key={index}
@@ -75,8 +79,21 @@ const AboutUs = () => {
 
         {/* Additional Fading Text Content */}
         {[
-          "Deepalaya has reached out to more than 3,78,145 children, given vocational training to 24,870 adults, and helped more than 1,616 Self Help Groups with 17,892 women who have established more than 8,431 micro-enterprises and many more.",
-          "Deepalaya’s growth, however, has not been a solitary one. The organisation takes the initiative to collaborate with the government and other agencies to make a meaningful intervention in the policymaking process of the State.",
+               `The genesis of Upasshak lies in the stark realities faced by hill tribe families. Bandarban’s rugged terrain and remoteness 
+               isolate villages, leaving schools under-resourced and children—especially girls—vulnerable to early dropout due to economic pressures or 
+               societal norms. Recognizing education as the cornerstone of empowerment, HF envisioned a residential program that not only provided 
+               shelter but also nurtured academic excellence, life skills, and pride in indigenous heritage. Today, Upasshak supports 75 students 
+               (28 boys, 48 girls) from 30 villages, primarily in Rowa Kyang, offering them a pathway to secondary education while addressing 
+               systemic barriers like language gaps, financial instability, and lack of mentorship. 
+               At its core, Upasshak is a rebellion against inequality. The hostel operates two facilities—a boys’ hostel and a girls’ hostel—where students from grades 6 to 10 live, study, and grow under the guidance of dedicated caregivers, teachers, and staff. The curriculum extends far beyond textbooks:
+
+    Academic Support: Students receive daily tutoring, SSC exam preparation, and access to computer labs (10 computers across hostels) where they learn coding, graphic design, and software development. In 2024, 13 of 16 SSC candidates passed, continuing Upasshak’s legacy of 83 SSC graduates since 2009.
+
+    Cultural Roots: Dance and music lessons in traditional Marma, Chakma, and Mro styles ensure students stay connected to their heritage. Festivals like Sangrai (Buddhist New Year) and International Mother Language Day are celebrated vibrantly, fostering pride in their identity.
+
+    Life Skills: Workshops on stress management, financial literacy, and moral education prepare students for adulthood. In 2024, a 4-day life skills training covered empathy, critical thinking, and goal-setting, equipping children to navigate challenges beyond the classroom.
+
+The hostel’s impact is amplified by its emphasis on gender equity. Girls, who once faced societal pressure to prioritize household duties over schooling, now comprise nearly 50% of the student body. Six girls received scholarships from the Prime Minister’s Education Assistance Trust in 2023, and initiatives like "Promotion of Girls" sessions empower them to pursue careers in medicine, engineering, and civil service`
         ].map((text, index) => (
           <motion.p
             key={index}

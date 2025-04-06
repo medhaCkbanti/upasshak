@@ -73,10 +73,10 @@ const Commitment = () => {
               OUR COMMITMENT TO BE THE UPASSHAK OF <br className="hidden md:block" /> CHILDREN'S FUTURE
             </h2>
             <p className="mt-4 text-gray-600 text-sm sm:text-base md:text-lg font-serif">
-              We invite you behind the scenes to witness the transformations made
-              possible by donors like you. Through poignant video testimonials,
-              you'll see the tangible impact your compassion has already made in
-              the lives of underprivileged children in India.
+            We vow to stand as unwavering guardians for every child who walks through Upasshak’s doors, 
+            shielding their dreams from the storms of poverty and inequality. With books as swords and 
+            cultural pride as armor, we pledge to nurture scholars who conquer SSC exams, artists who paint 
+            their heritage onto global canvases, and leaders who redefine what’s possible from these hills.
             </p>
           </motion.div>
 
@@ -118,28 +118,18 @@ const Commitment = () => {
               viewport={{ once: true, amount: 0.5 }}
               className="w-full lg:w-[50%] text-center lg:text-left"
             >
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#DA291C] mb-4">
-                Bal Raksha Bharat's Ongoing Mission to <br className="hidden md:block" /> Empower 4 Million Children!
-              </h3>
+       
               <p className="text-gray-600 text-sm sm:text-base mb-3 font-serif">
-                At Bal Raksha Bharat, we believe in creating a secure future by
-                ensuring every child has a secure childhood.
+              Every dragon fruit sapling we plant, every coding lesson taught under flickering monsoon lamps, 
+              and every girl’s laughter echoing in classrooms is a testament to our promise: to turn barriers into bridges
               </p>
               <p className="text-gray-600 text-sm sm:text-base mb-3 font-serif">
-                India's children possess immense potential, yet they face numerous
-                challenges. Our mission recognizes that similar efforts may not yield the
-                same results for every child, and we tailor our support to their unique
-                needs.
-                <a
-                  href="/online-donation"
-                  className="text-red-600 font-semibold underline ml-1"
-                >
-                  Online donation India
-                </a>
+              We commit to lighting paths where darkness once ruled—transforming rented rooms into solar-powered 
+              sanctuaries, alumni into mentors, and whispered hopes into roars of triumph. 
+           
               </p>
               <p className="text-gray-600 text-sm sm:text-base font-serif">
-                Join us in building a world where every child has access to equal
-                opportunities and can grow with confidence.
+              Here, futures are not imagined; they are built, brick by brick, with courage, sweat, and unyielding love.
               </p>
             </motion.div>
           </div>
